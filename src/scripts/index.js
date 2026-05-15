@@ -4,6 +4,14 @@ import '../styles/styles.css';
 import App from './pages/app';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const authToken = localStorage.getItem('AUTH-TOKEN');
+
+  if(!authToken) {
+    window.location.hash = "#/login";
+  } else {
+    window.location.hash = "#/" 
+  }
+
   const app = new App({
     content: document.querySelector('#main-content'),
     drawerButton: document.querySelector('#drawer-button'),
