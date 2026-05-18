@@ -15,10 +15,6 @@ body {
   max-width: 1300px;
 }
 
-header {
-  background-color: lightskyblue;
-}
-
 .main-header {
   min-height: 90px;
   padding-block: 20px;
@@ -97,8 +93,37 @@ header {
 .main-content {
   padding-block: 20px;
 }
-
 /* Write your styles more here */
+h1 {
+  text-align: center;
+  margin: 10px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+    width: 500px;
+    box-shadow: 0 2px 4px 0 #bcbfc4;
+    border-radius: 10px;
+    padding: 25px;
+}
+                
+.card p {
+  margin: 25px 0;
+}
+
+.add-story-form,
+.login-form,
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
 
 @media screen and (width > 1000px) {
   .navigation-drawer {

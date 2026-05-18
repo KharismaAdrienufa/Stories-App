@@ -3,15 +3,21 @@ import StoryApi from '../../data/api';
 class RegisterPage {
   render() {
     return `
-    <form id="regForm">
-        <label for="regName">Name</label>
-        <input id="regName" required>
-        <label for="regEmail">Email</label>
-        <input type="email" id="regEmail" required>
-        <label for="regPassword">Password</label>
-        <input type="password" id="regPassword" required>
-        <button type="submit" id="regButton">Register</button>
-    </form>
+    <section class="form-container">
+      <div class="card">
+        <h1>Register</h1>
+        <form id="regForm" class="reg-form">
+            <label for="regName">Name</label>
+            <input id="regName" required>
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" required>
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" minlength="8" required>
+            <button type="submit" id="regButton">Register</button>
+        </form>
+        <p>Already have account? <a href="#/login">Login</a>here</p>
+      </div>
+    </section>
     `;
   }
 

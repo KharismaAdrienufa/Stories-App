@@ -35,6 +35,13 @@ class App {
   async renderPage() {
     const url = getActiveRoute();
     const page = routes[url];
+    const header = document.getElementsByTagName("header")[0];
+
+    if(url === "/login" || url === "/register") {
+      if(header) header.style.display = "none";
+    } else {
+      if(header) header.style.display = "block";
+    }
 
     this.#content.innerHTML = await page.render();
     await page.afterRender();

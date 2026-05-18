@@ -39,17 +39,18 @@ class StoryApi {
     return await fetchResponse.json();;
   }
 
-  static async addStory(desc, photo) {
+  static async addStory(desc, photo, lat, lon) {
     const authToken = localStorage.getItem("AUTH-TOKEN");
 
     const formData = new FormData();
     formData.append("description", desc);
     formData.append("photo", photo);
+    formData.append("lat", lat);
+    formData.append("lon", lon);
 
     const options = {
       method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data",
         "Authorization": `Bearer ${authToken}`
       },
       body: formData
@@ -57,7 +58,7 @@ class StoryApi {
 
     const fetchResponse = await fetch(`${CONFIG.BASE_URL}/stories`, options);
     if (!(fetchResponse.status >= 200 && fetchResponse.status < 300)) {
-       throw new Error("something went wrong");
+       throw new Error(fetchResponse.message);
     }
   }
 
@@ -72,6 +73,25 @@ class StoryApi {
     }
 
     const fetchResponse = await fetch(`${CONFIG.BASE_URL}/stories`, options);
+
+    if (!(fetchResponse.status >= 200 && fetchResponse.status < 300)) {
+      throw new Error("something went wrong");
+    }
+
+    return await fetchResponse.json();
+  }
+
+  static async getDetailStory(storyId) {
+    const authToken = localStorage.getItem("AUTH-TOKEN");
+
+    const options = {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${authToken}`
+      }
+    }
+
+    const fetchResponse = await fetch(`${CONFIG.BASE_URL}/stories/${storyId}`, options);
 
     if (!(fetchResponse.status >= 200 && fetchResponse.status < 300)) {
       throw new Error("something went wrong");

@@ -3,13 +3,19 @@ import StoryApi from '../../data/api';
 class LoginPage {
   render() {
     return `
-    <form id="loginForm">
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" required>
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" required>
-        <button type="submit" id="loginButton">Login</button>
-    </form>
+    <section class="form-container">
+      <div class="card">
+        <h1>Login</h1>
+        <form id="loginForm" class="login-form">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required>
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
+            <button type="submit" id="loginButton">Login</button>
+        </form>
+        <p>Not have account? <a href="#/register">Register</a> first</p>
+      </div>
+    </section>
     `;
   }
 
