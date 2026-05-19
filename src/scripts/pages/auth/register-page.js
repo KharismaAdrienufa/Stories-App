@@ -8,11 +8,11 @@ class RegisterPage {
         <h1>Register</h1>
         <form id="regForm" class="reg-form">
             <label for="regName">Name</label>
-            <input id="regName" required>
+            <input id="regName" aria-required="true" required>
             <label for="regEmail">Email</label>
-            <input type="email" id="regEmail" required>
+            <input type="email" id="regEmail" aria-required="true" required>
             <label for="regPassword">Password</label>
-            <input type="password" id="regPassword" minlength="8" required>
+            <input type="password" id="regPassword" minlength="8" aria-required="true" required>
             <button type="submit" id="regButton">Register</button>
         </form>
         <p>Already have account? <a href="#/login">Login</a>here</p>

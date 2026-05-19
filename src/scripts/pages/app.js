@@ -43,6 +43,16 @@ class App {
       if(header) header.style.display = "block";
     }
 
+    if(!document.startViewTransition) {
+      this.#content.innerHTML = await page.render();
+      await page.afterRender();
+    } else {
+      document.startViewTransition(async () => {
+        this.#content.innerHTML = await page.render();
+        await page.afterRender();
+      });
+    }
+
     this.#content.innerHTML = await page.render();
     await page.afterRender();
   }

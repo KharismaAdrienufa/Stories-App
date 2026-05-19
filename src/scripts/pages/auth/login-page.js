@@ -8,9 +8,9 @@ class LoginPage {
         <h1>Login</h1>
         <form id="loginForm" class="login-form">
             <label for="loginEmail">Email</label>
-            <input type="email" id="loginEmail" required>
+            <input type="email" id="loginEmail" aria-required="true" required>
             <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" required>
+            <input type="password" id="loginPassword" aria-required="true" required>
             <button type="submit" id="loginButton">Login</button>
         </form>
         <p>Not have account? <a href="#/register">Register</a> first</p>

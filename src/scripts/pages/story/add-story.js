@@ -2,13 +2,17 @@ import StoryApi from "../../data/api";
 
 class AddStory {
     constructor() {
-        this._selectedLat = null;
-        this._selectedLon = null;
+        this._addMymap = null;
     }
 
     render() {
         return `
         <style>
+            .form-group {
+                display: flex;
+                flex-direction: column;
+            }
+
             .map {
                 width: 100%;
                 height: 300px;
@@ -21,10 +25,16 @@ class AddStory {
                 <h1>Add Story</h1>
                 <form id="addStoryForm" class="add-story-form">
                     <label for="addPhoto">Add Photo</label>
-                    <input type="file" id="addPhoto" accept="image/*" required>
+                    <input type="file" id="addPhoto" accept="image/*" aria-required="true" required>
                     <label for="addDesc">Add Description</label>
-                    <textarea id="addDesc" required></textarea>
-                    <div id="map" class="map" role="input"></div>
+                    <textarea id="addDesc" aria-required="true" required></textarea>
+                    <div class="form-group">
+                        <div id="addStoryMap" class="map" role="input"></div>
+                        <label for="latMap">Latitude</label>
+                        <input id="latMap" type="text" readonly>
+                        <label for="lonMap">Longitude</label>
+                        <input id="lonMap" type="text" readonly>
+                    </div>
                     <button type="submit" id="addStoryButton">Add Story</button>
                 </form>
             </div>
@@ -34,9 +44,19 @@ class AddStory {
 
     async afterRender() {
             const addStoryForm = document.getElementById("addStoryForm");
+            const addStoryMyMap = document.getElementById("addStoryMap");
+            let latMap = document.getElementById("latMap");
+            let lonMap = document.getElementById("lonMap");
             const indonesiaCoor = [-2.548926, 118.0148634];
 
-            const myMap = L.map('map', {
+            if(!addStoryMyMap) return;
+
+            if(this._addMymap) {
+                this._addMymap.remove();
+                this._addMyMap = null;
+            }
+
+            const myMap = L.map('addStoryMap', {
             zoom: 5,
             center: indonesiaCoor,
             });
@@ -58,11 +78,11 @@ class AddStory {
 
                 selectedCoor = L.marker([lat, lng])
                     .addTo(myMap)
-                    .bindPopup("Selected Location")
+                    .bindPopup(`Selected : ${lat}, ${lng}`)
                     .openPopup();
 
-                this._selectedLat = lat;
-                this._selectedLon = lng;
+                latMap.value = lat;
+                lonMap.value = lng;
             });
 
         const addStoryFormSubmit = async (event) => {
